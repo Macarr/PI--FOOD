@@ -5,21 +5,21 @@ module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define("Recipe", {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.UUID,
       primaryKey: true,
+      defaultValue: DataTypes.UUIDV4,
       allowNull: false,
       unique: true,
-      autoIncrement: true,
     },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    imagen: {
+    image: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    resumen: {
+    summary: {
       type: DataTypes.TEXT,
       allowNull: false,
     },
@@ -27,7 +27,7 @@ module.exports = (sequelize) => {
       type: DataTypes.FLOAT,
       allowNull: false,
     },
-    pasoAPaso: {
+    steps: {
       type: DataTypes.TEXT,
       allowNull: false,
     },

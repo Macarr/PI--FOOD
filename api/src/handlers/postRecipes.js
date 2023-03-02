@@ -1,14 +1,14 @@
 const createRecipe = require("../controllers/createRecipe");
 
 const postRecipes = async (req, res) => {
-  const { name, imagen, resumen, healthScore, pasoAPaso } = req.body;
+  const { name, image, summary, healthScore, steps } = req.body;
   try {
     const newRecipe = await createRecipe(
       name,
-      imagen,
-      resumen,
+      image,
+      summary,
       healthScore,
-      pasoAPaso
+      steps
     );
     res.status(201).send(newRecipe);
   } catch (error) {
