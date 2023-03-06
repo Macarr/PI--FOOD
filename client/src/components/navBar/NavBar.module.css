@@ -1,0 +1,23 @@
+.mainContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: rgba(248, 237, 235);
+  padding: 1em;
+  border-radius: 1em;
+  border: 1em solid rgba (249, 220, 196);
+  margin: 1em;
+}
+
+#NavLink {
+  width: auto;
+  height: 30px;
+  font-size: 20px;
+  color: beige;
+  font-family: Georgia;
+  font-weight: bold;
+  background-color: rgb(60, 10, 82);
+  border-radius: 10px;
+  border: 1px solid rgb(128, 50, 205);
+  transition: 0.3s;
+}
