@@ -4,7 +4,7 @@ const cleanArr = (arr) => {
       id: elem.id,
       name: elem.title,
       image: elem.image,
-      sumary: elem.sumary,
+      summary: elem.summary,
       healthScore: elem.healthScore,
       steps: elem.analyzedInstructions[0]?.steps.map((e) => {
         return {
@@ -12,6 +12,8 @@ const cleanArr = (arr) => {
           step: e.step,
         };
       }),
+      diets: elem.diets,
+      created: false,
     };
   });
 };

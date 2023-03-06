@@ -1,6 +1,6 @@
 require("dotenv").config();
 const { API_KEY } = process.env;
-const { Recipe } = require("../db");
+const { Recipes, Diets } = require("../db");
 const axios = require("axios");
 
 const recipeControllerId = async (id, source) => {
@@ -24,12 +24,19 @@ const recipeControllerId = async (id, source) => {
             };
           }),
           diets: data.diets,
+          created: false,
         };
         return received;
       });
     return recipe;
   }
-  return Recipe.findByPk(id);
+  return Recipes.findByPk(id, {
+    include: {
+      model: Diets,
+      attributes: ["name"],
+      through: { attributes: [] },
+    },
+  });
 };
 
 // const recipeControllerId = async (id, source) => {
