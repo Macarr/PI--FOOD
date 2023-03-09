@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_RECIPES, GET_ONERECIPE, GET_DIETS } from "./action-types";
+import { GET_RECIPES, GET_ONERECIPE, GET_DIETS } from "../Actions/action-types";
 
 export const getRecipes = () => {
   return async (dispatch) => {

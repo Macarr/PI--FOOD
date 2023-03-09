@@ -1,13 +1,11 @@
 import Card from "../Card/Card.jsx";
 import style from "./CardsContainer.module.css";
-import { useSelector } from "react-redux";
-const CardsContainer = () => {
-  //  //el array con las recetas viene de mi estado global, el store de redux
-  const cardRecipe = useSelector((state) => state.recipes);
+const CardsContainer = ({ recipesData }) => {
+  //  //el array con las recetas viene de mi estado global, el store de redux, que a su vez esta filtrado por el paginado
 
   return (
     <div className={style.container}>
-      {cardRecipe.map((recipe) => {
+      {recipesData.map((recipe) => {
         return (
           <Card
             id={recipe.id}
