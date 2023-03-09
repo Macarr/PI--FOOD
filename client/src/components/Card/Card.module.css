@@ -1,0 +1,16 @@
+.card {
+  background-color: rgba(240, 190, 149, 0.381);
+  opacity: 1;
+  width: 22em;
+  height: 25em;
+  margin: 1em;
+  border-radius: 1em;
+  transition: 0.3s;
+  display: inline-block;
+  padding: 1em;
+}
+
+.card:hover {
+  background-color: #7d7972c9;
+  color: beige;
+}
