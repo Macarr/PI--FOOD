@@ -4,8 +4,12 @@ import style from "./NavBar.module.css";
 const NavBar = () => {
   return (
     <div className={style.mainContainer}>
-      <NavLink to="/home"> HOME </NavLink>
-      <NavLink to="/create"> CREATE </NavLink>
+      <NavLink className={style.navLink} to="/home">
+        HOME
+      </NavLink>
+      <NavLink className={style.navLink} to="/create">
+        CREATE
+      </NavLink>
     </div>
   );
 };

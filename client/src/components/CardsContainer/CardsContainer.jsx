@@ -8,13 +8,14 @@ const CardsContainer = ({ recipesData }) => {
       {recipesData.map((recipe) => {
         return (
           <Card
-            id={recipe.id}
-            name={recipe.name}
-            image={recipe.image}
-            summary={recipe.summary}
-            healthScore={recipe.healthScore}
-            steps={recipe.steps}
-            diets={recipe.diets.join(" - ")}
+            key={recipe?.id}
+            id={recipe?.id}
+            name={recipe?.name}
+            image={recipe?.image}
+            summary={recipe?.summary}
+            healthScore={recipe?.healthScore}
+            steps={recipe?.steps}
+            diets={recipe?.diets.join(" - ")}
           />
         );
       })}

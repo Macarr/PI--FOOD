@@ -1,12 +1,18 @@
+import style from "./pagination.module.css";
+
 const Pagination = ({ totalPost, postsPerPage, setCurrentPage }) => {
   let pages = [];
   for (let i = 1; i <= Math.ceil(totalPost / postsPerPage); i++) {
     pages.push(i);
   }
   return (
-    <div>
+    <div className={style.pagination}>
       {pages.map((page) => (
-        <button onClick={() => setCurrentPage(page)} style={{ width: "30px" }}>
+        <button
+          className={style.button}
+          onClick={() => setCurrentPage(page)}
+          style={{ width: "30px" }}
+        >
           {page}
         </button>
       ))}

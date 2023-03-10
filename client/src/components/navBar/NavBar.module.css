@@ -2,22 +2,27 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  background-color: rgba(248, 237, 235);
+  background-color: rgba(248, 237, 235, 0.663);
   padding: 1em;
   border-radius: 1em;
   border: 1em solid rgba (249, 220, 196);
   margin: 1em;
 }
 
-#NavLink {
+.navLink {
+  cursor: pointer;
   width: auto;
-  height: 30px;
+  height: auto;
   font-size: 20px;
-  color: beige;
-  font-family: Georgia;
-  font-weight: bold;
-  background-color: rgb(60, 10, 82);
-  border-radius: 10px;
-  border: 1px solid rgb(128, 50, 205);
+  background-color: rgb(231, 218, 218);
+  font-family: Verdana;
+  font-weight: normal;
+  box-shadow: 1px 0.5px 7px rgb(229 187 170 / 65%);
+  border-radius: 0.8em;
   transition: 0.3s;
+  color: #20201ed1;
+}
+.navLink:hover {
+  background-color: #926d69ef;
+  color: rgb(231, 218, 218);
 }

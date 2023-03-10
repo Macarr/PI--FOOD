@@ -1,5 +1,9 @@
 import axios from "axios";
-import { GET_RECIPES, GET_ONERECIPE, GET_DIETS } from "../Actions/action-types";
+import {
+  GET_RECIPES,
+  GET_DETAILRECIPE,
+  GET_DIETS,
+} from "../Actions/action-types";
 
 export const getRecipes = () => {
   return async (dispatch) => {
@@ -12,14 +16,14 @@ export const getRecipes = () => {
   };
 };
 
-export const getOneRecipe = (id) => {
+export const getDetailRecipe = (id) => {
   return async (dispatch) => {
     const response = await axios.get(
       `http://localhost:3001/pifood/recipes/${id}`
     );
     const recipe = response.data;
     return dispatch({
-      type: GET_ONERECIPE,
+      type: GET_DETAILRECIPE,
       payload: recipe,
     });
   };

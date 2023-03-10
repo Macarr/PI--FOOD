@@ -1,14 +1,19 @@
-import { GET_RECIPES, GET_DIETS } from "./Actions/action-types";
+import {
+  GET_RECIPES,
+  GET_DIETS,
+  GET_DETAILRECIPE,
+} from "./Actions/action-types";
 
-const initianState = {
+const initialState = {
   recipes: [],
   dietTypes: [],
+  recipesDetail: [],
 };
 
 //funcion q recibe al estado global y la action (donde yo le indico lo que tine que hacer)
 
 //hago destructuring de la action
-const rootReducer = (state = initianState, { type, payload }) => {
+const rootReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case GET_RECIPES:
       return {
@@ -20,6 +25,12 @@ const rootReducer = (state = initianState, { type, payload }) => {
       return {
         ...state,
         dietTypes: payload,
+      };
+
+    case GET_DETAILRECIPE:
+      return {
+        ...state,
+        recipesDetail: payload,
       };
 
     default:
