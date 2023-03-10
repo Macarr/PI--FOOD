@@ -16,9 +16,9 @@ const createRecipe = async (
     healthScore,
     steps,
   });
-  let dietDb = await Diets.findOne({ where: { name: diets } });
+  let dietDb = await Diets.findAll({ where: { name: diets } });
 
-  await newRecipe.addDiet(dietDb.dataValues.id);
+  await newRecipe.addDiets(dietDb);
   return newRecipe;
 };
 

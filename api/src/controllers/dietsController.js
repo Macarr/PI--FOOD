@@ -5,7 +5,6 @@ const getAllDiets = async () => {
   const allInfo = await getAllRecipes();
 
   const apiDiets = allInfo.map((e) => e.diets).flat();
-  console.log(apiDiets);
 
   await Promise.all(
     apiDiets.map((element) => {

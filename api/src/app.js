@@ -28,7 +28,7 @@ server.use((req, res, next) => {
 });
 
 server.use(async (req, res, next) => {
-  if (!Diets) getAllDiets();
+  if (!Diets) await getAllDiets();
 
   //si hay dietas no hace nada, si esta vacio lo cargo
   // llama a get all diets
