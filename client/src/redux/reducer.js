@@ -2,6 +2,8 @@ import {
   GET_RECIPES,
   GET_DIETS,
   GET_DETAILRECIPE,
+  GET_RECIPESBYNAME,
+  CLEAN_DETAIL,
 } from "./Actions/action-types";
 
 const initialState = {
@@ -33,6 +35,17 @@ const rootReducer = (state = initialState, { type, payload }) => {
         recipesDetail: payload,
       };
 
+    case GET_RECIPESBYNAME:
+      return {
+        ...state,
+        recipes: payload,
+      };
+
+    case CLEAN_DETAIL:
+      return {
+        ...state,
+        recipesDetail: [],
+      };
     default:
       return { ...state };
   }

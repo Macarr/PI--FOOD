@@ -12,9 +12,6 @@ const CardsContainer = ({ recipesData }) => {
             id={recipe?.id}
             name={recipe?.name}
             image={recipe?.image}
-            summary={recipe?.summary}
-            healthScore={recipe?.healthScore}
-            steps={recipe?.steps}
             diets={recipe?.diets.join(" - ")}
           />
         );

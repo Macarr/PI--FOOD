@@ -5,7 +5,7 @@
   height: 25em;
   margin: 1em;
   border-radius: 1em;
-  transition: 0.3s;
+  transition: 0.4s;
   display: inline-block;
   padding: 1em;
 }
@@ -13,4 +13,19 @@
 .card:hover {
   background-color: #7d7972c9;
   color: beige;
+  transform: scale(1);
+}
+
+.name {
+  font-family: verdana;
+  font-size: large;
+  color: #6d0000d6;
+  transition: 0.4s;
+}
+.name:hover {
+  color: #e31d1dce;
+}
+
+.Link {
+  text-decoration: none;
 }

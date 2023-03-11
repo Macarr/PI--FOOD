@@ -3,6 +3,8 @@ import {
   GET_RECIPES,
   GET_DETAILRECIPE,
   GET_DIETS,
+  GET_RECIPESBYNAME,
+  CLEAN_DETAIL,
 } from "../Actions/action-types";
 
 export const getRecipes = () => {
@@ -37,5 +39,24 @@ export const getDiets = () => {
       type: GET_DIETS,
       payload: diets,
     });
+  };
+};
+
+export const getRecipesByName = (name) => {
+  return async (dispatch) => {
+    const response = await axios.get(
+      `http://localhost:3001/pifood/recipes/?name=${name}`
+    );
+    const recipes = response.data;
+    return dispatch({
+      type: GET_RECIPESBYNAME,
+      payload: recipes,
+    });
+  };
+};
+
+export const cleanDetail = () => {
+  return {
+    type: CLEAN_DETAIL,
   };
 };

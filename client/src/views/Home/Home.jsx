@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getRecipes } from "../../redux/Actions/actions";
 import Pagination from "../../components/Pagination/pagination.jsx";
+import style from "./Home.module.css";
 
 // 1. Cuando home se monta --> useEffect()
 // 2. que haga el dispatch --> useDispatch()
@@ -24,8 +25,7 @@ const Home = () => {
   const currentPosts = recipes.slice(firstPostIndex, lastPostIndex);
 
   return (
-    <div>
-      <h1>PI FOOD</h1>
+    <div className={style.container}>
       <div>
         <CardsContainer recipesData={currentPosts} />
       </div>

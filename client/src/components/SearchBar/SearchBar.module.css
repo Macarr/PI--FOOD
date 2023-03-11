@@ -1,23 +1,22 @@
-.mainContainer {
+.searchBar {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-  background-color: rgba(248, 237, 235, 0.663);
-  padding: 1em;
-  border-radius: 1em;
-  border: 1em solid rgba (249, 220, 196);
-  margin: 1em;
-  margin-bottom: 1em;
   gap: 0.25rem;
-  position: fixed;
-  top: 0;
-  width: 100%;
+  font-family: Verdana;
 }
 
-.navLink {
+.input {
+  font-size: 1.3em;
+  border-radius: 0.6em;
+  height: 1.6em;
+  cursor: text;
+  background: linear-gradient(45deg, #dd9f9f9c, #b19b7c8f);
+  border: none;
+}
+
+.button {
   cursor: pointer;
   z-index: 99;
-  /* position: absolute; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -30,9 +29,10 @@
   letter-spacing: 1px;
   font-weight: 200;
   transition: 0.3s;
-  text-decoration: none;
+  border: none;
 }
-.navLink:hover {
+
+.button:hover {
   background-color: #926d69ef;
   color: rgb(231, 218, 218);
 }

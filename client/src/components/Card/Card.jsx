@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
+
 import style from "./Card.module.css";
 
 const Card = (props) => {
   return (
     <div className={style.card}>
-      <Link to={`/detail/${props.id}`}>
-        <p> {props.name} </p>
+      <Link className={style.Link} to={`/detail/${props.id}`}>
+        <h1 className={style.name}>{props.name}</h1>
         <img src={props.image} alt="" />
       </Link>
       <ul>Type of diet:</ul>
