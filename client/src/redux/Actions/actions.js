@@ -5,6 +5,9 @@ import {
   GET_DIETS,
   GET_RECIPESBYNAME,
   CLEAN_DETAIL,
+  SORT_BYHEALTHSCORE,
+  SORT_BYNAME,
+  FILTER_DIET,
 } from "../Actions/action-types";
 
 export const getRecipes = () => {
@@ -44,19 +47,45 @@ export const getDiets = () => {
 
 export const getRecipesByName = (name) => {
   return async (dispatch) => {
-    const response = await axios.get(
-      `http://localhost:3001/pifood/recipes/?name=${name}`
-    );
-    const recipes = response.data;
-    return dispatch({
-      type: GET_RECIPESBYNAME,
-      payload: recipes,
-    });
+    try {
+      const response = await axios.get(
+        `http://localhost:3001/pifood/recipes/?name=${name}`
+      );
+      const recipes = response.data;
+      return dispatch({
+        type: GET_RECIPESBYNAME,
+        payload: recipes,
+      });
+    } catch (error) {
+      console.log(error);
+      alert("No recipes found, please try another");
+    }
   };
 };
 
 export const cleanDetail = () => {
   return {
     type: CLEAN_DETAIL,
+  };
+};
+
+export const sortByName = (order) => {
+  return {
+    type: SORT_BYNAME,
+    payload: order,
+  };
+};
+
+export const sortByHealthScore = (order) => {
+  return {
+    type: SORT_BYHEALTHSCORE,
+    payload: order,
+  };
+};
+
+export const filterByDiet = (diet) => {
+  return {
+    type: FILTER_DIET,
+    payload: diet,
   };
 };

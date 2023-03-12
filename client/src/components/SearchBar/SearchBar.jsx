@@ -5,21 +5,18 @@ import style from "./SearchBar.module.css";
 
 const SearchBar = () => {
   const dispatch = useDispatch();
-  const [search, setSearch] = useState();
+  const [search, setSearch] = useState("");
 
   const handleChange = (event) => {
     setSearch(event.target.value);
   };
 
   const handleSubmit = (event) => {
-    try {
-      event.preventDefault();
-      dispatch(getRecipesByName(search));
-    } catch (error) {
-      return error;
-    }
+    event.preventDefault();
+    dispatch(getRecipesByName(search));
     setSearch("");
   };
+
   return (
     <div className={style.searchBar}>
       <input

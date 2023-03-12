@@ -13,7 +13,7 @@
 .card:hover {
   background-color: #7d7972c9;
   color: beige;
-  transform: scale(1);
+  transform: scale(1.1);
 }
 
 .name {
