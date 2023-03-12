@@ -4,6 +4,8 @@ import {
   GET_DETAILRECIPE,
   GET_RECIPESBYNAME,
   CLEAN_DETAIL,
+  SORT_BYNAME,
+  SORT_BYHEALTHSCORE,
 } from "./Actions/action-types";
 
 const initialState = {
@@ -46,6 +48,43 @@ const rootReducer = (state = initialState, { type, payload }) => {
         ...state,
         recipesDetail: [],
       };
+
+    case SORT_BYNAME:
+      const sorted =
+        payload === "A to Z"
+          ? state.recipes.sort((a, b) => {
+              if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
+              if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
+              return 0;
+            })
+          : state.recipes.sort((a, b) => {
+              if (a.name.toLowerCase() < b.name.toLowerCase()) return 1;
+              if (a.name.toLowerCase() > b.name.toLowerCase()) return -1;
+              return 0;
+            });
+      return {
+        ...state,
+        recipes: sorted,
+      };
+
+    case SORT_BYHEALTHSCORE:
+      const sortHealth =
+        payload === "1 to 100"
+          ? state.recipes.sort((a, b) => {
+              if (a.healthScore > b.healthScore) return 1;
+              if (a.healthScore < b.healthScore) return -1;
+              return 0;
+            })
+          : state.recipes.sort((a, b) => {
+              if (a.healthScore < b.healthScore) return 1;
+              if (a.healthScore > b.healthScore) return -1;
+              return 0;
+            });
+      return {
+        ...state,
+        recipes: sortHealth,
+      };
+
     default:
       return { ...state };
   }

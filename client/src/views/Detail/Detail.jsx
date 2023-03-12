@@ -13,13 +13,13 @@ const Detail = () => {
     dispatch(getDetailRecipe(id));
 
     return () => dispatch(cleanDetail());
-  }, [dispatch]);
+  }, [dispatch, id]);
 
   return (
     <div className={style.mainContainer}>
       <h1 className={style.name}>{recipesDetail?.name}</h1>
       <h5 className={style.id}>{recipesDetail?.id}</h5>
-      <img className={style.img} src={recipesDetail?.image} />
+      <img className={style.img} src={recipesDetail?.image} alt="" />
       <div className={style.container}>
         <h2> Diet type: </h2>
 

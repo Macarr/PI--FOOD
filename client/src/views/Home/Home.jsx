@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getRecipes } from "../../redux/Actions/actions";
 import Pagination from "../../components/Pagination/pagination.jsx";
 import style from "./Home.module.css";
+import Sort from "../../components/Filters/Sort/Sort.jsx";
 
 // 1. Cuando home se monta --> useEffect()
 // 2. que haga el dispatch --> useDispatch()
@@ -16,7 +17,7 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(getRecipes());
-  }, [dispatch]);
+  }, [dispatch, recipes]);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(9);
@@ -26,6 +27,10 @@ const Home = () => {
 
   return (
     <div className={style.container}>
+      <div>
+        <Sort></Sort>
+      </div>
+
       <div>
         <CardsContainer recipesData={currentPosts} />
       </div>
