@@ -4,7 +4,7 @@ const { getAllRecipes } = require("./recipeControllerName");
 const getAllDiets = async () => {
   const allInfo = await getAllRecipes();
 
-  const apiDiets = allInfo.map((e) => e.diets).flat();
+  const apiDiets = allInfo.map((e) => e.Diets).flat();
 
   await Promise.all(
     apiDiets.map((element) => {

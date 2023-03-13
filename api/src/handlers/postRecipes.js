@@ -1,7 +1,7 @@
 const createRecipe = require("../controllers/createRecipe");
 
 const postRecipes = async (req, res) => {
-  const { name, image, summary, healthScore, steps, diets } = req.body;
+  const { name, image, summary, healthScore, steps, Diets } = req.body;
 
   try {
     const newRecipe = await createRecipe(
@@ -10,7 +10,7 @@ const postRecipes = async (req, res) => {
       summary,
       healthScore,
       steps,
-      diets
+      Diets
     );
 
     res.status(201).send(newRecipe);

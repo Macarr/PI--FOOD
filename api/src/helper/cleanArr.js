@@ -12,7 +12,7 @@ const cleanArr = (arr) => {
           step: e.step,
         };
       }),
-      diets: elem.diets,
+      Diets: elem.diets,
       created: false,
     };
   });

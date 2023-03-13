@@ -2,6 +2,7 @@ require("dotenv").config();
 const { API_KEY } = process.env;
 const { Recipes, Diets } = require("../db");
 const axios = require("axios");
+const cleanArrDataBase = require("../helper/cleanArrDB");
 
 const recipeControllerId = async (id, source) => {
   if (source === "api") {
@@ -23,20 +24,22 @@ const recipeControllerId = async (id, source) => {
               step: e.step,
             };
           }),
-          diets: data.diets,
+          Diets: data.diets,
           created: false,
         };
         return received;
       });
     return recipe;
   }
-  return Recipes.findByPk(id, {
+  const recipesDb = await Recipes.findByPk(id, {
     include: {
       model: Diets,
       attributes: ["name"],
       through: { attributes: [] },
     },
   });
+  const DataBaseClean = cleanArrDataBase([recipesDb]);
+  return DataBaseClean[0];
 };
 
 // const recipeControllerId = async (id, source) => {

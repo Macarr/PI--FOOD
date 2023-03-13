@@ -9,6 +9,9 @@ const getRecipesByName = async (req, res) => {
     const recipe = name
       ? await recipeControllerName(name)
       : await getAllRecipes();
+    if (recipe.length < 1) {
+      throw Error("Recipe not found");
+    }
     res.status(200).json(recipe);
   } catch (error) {
     res.status(400).json({ error: error.message });
