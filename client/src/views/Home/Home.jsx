@@ -1,11 +1,12 @@
 import CardsContainer from "../../components/CardsContainer/CardsContainer.jsx";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getRecipes } from "../../redux/Actions/actions";
+import { getRecipes, cleanRecipes } from "../../redux/Actions/actions";
 import Pagination from "../../components/Pagination/pagination.jsx";
 import style from "./Home.module.css";
 import Sort from "../../components/Filters/Sort/Sort.jsx";
-
+import DietsFilter from "../../components/Filters/DietsFilter/DietsFilter.jsx";
+import Created from "../../components/Filters/Created/Created.jsx";
 // 1. Cuando home se monta --> useEffect()
 // 2. que haga el dispatch --> useDispatch()
 // 3. hace que se ejecute la action creator --> getRecipes()
@@ -13,11 +14,13 @@ import Sort from "../../components/Filters/Sort/Sort.jsx";
 // 5. recibe la action, donde se crea un estado nuevo que es igual al E anterior sumandole las recetas.
 const Home = () => {
   const dispatch = useDispatch();
-  const recipes = useSelector((state) => state.recipes);
+  const recipes = useSelector((state) => state.recipesModified);
 
   useEffect(() => {
     dispatch(getRecipes());
-  }, [dispatch, recipes]);
+
+    return dispatch(cleanRecipes());
+  }, [dispatch]);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(9);
@@ -28,7 +31,9 @@ const Home = () => {
   return (
     <div className={style.container}>
       <div>
-        <Sort></Sort>
+        <Sort />
+        <DietsFilter />
+        <Created />
       </div>
 
       <div>

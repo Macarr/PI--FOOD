@@ -8,6 +8,8 @@ import {
   SORT_BYHEALTHSCORE,
   SORT_BYNAME,
   FILTER_DIET,
+  CLEAN_RECIPES,
+  FILTER_CREATE,
 } from "../Actions/action-types";
 
 export const getRecipes = () => {
@@ -69,6 +71,12 @@ export const cleanDetail = () => {
   };
 };
 
+export const cleanRecipes = () => {
+  return {
+    type: CLEAN_RECIPES,
+  };
+};
+
 export const sortByName = (order) => {
   return {
     type: SORT_BYNAME,
@@ -87,5 +95,12 @@ export const filterByDiet = (diet) => {
   return {
     type: FILTER_DIET,
     payload: diet,
+  };
+};
+
+export const filterCreate = (create) => {
+  return {
+    type: FILTER_CREATE,
+    payload: create,
   };
 };

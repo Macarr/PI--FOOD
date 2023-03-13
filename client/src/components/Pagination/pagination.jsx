@@ -7,8 +7,9 @@ const Pagination = ({ totalPost, postsPerPage, setCurrentPage }) => {
   }
   return (
     <div className={style.pagination}>
-      {pages.map((page) => (
+      {pages.map((page, index) => (
         <button
+          key={index}
           className={style.button}
           onClick={() => setCurrentPage(page)}
           style={{ width: "30px" }}

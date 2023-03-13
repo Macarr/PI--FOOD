@@ -6,10 +6,14 @@ import {
   CLEAN_DETAIL,
   SORT_BYNAME,
   SORT_BYHEALTHSCORE,
+  FILTER_DIET,
+  CLEAN_RECIPES,
+  FILTER_CREATE,
 } from "./Actions/action-types";
 
 const initialState = {
   recipes: [],
+  recipesModified: [],
   dietTypes: [],
   recipesDetail: [],
 };
@@ -23,6 +27,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         recipes: payload,
+        recipesModified: payload,
       };
 
     case GET_DIETS:
@@ -40,7 +45,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
     case GET_RECIPESBYNAME:
       return {
         ...state,
-        recipes: payload,
+        recipesModified: payload,
       };
 
     case CLEAN_DETAIL:
@@ -49,40 +54,73 @@ const rootReducer = (state = initialState, { type, payload }) => {
         recipesDetail: [],
       };
 
-    case SORT_BYNAME:
-      const sorted =
-        payload === "A to Z"
-          ? state.recipes.sort((a, b) => {
-              if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
-              if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
-              return 0;
-            })
-          : state.recipes.sort((a, b) => {
-              if (a.name.toLowerCase() < b.name.toLowerCase()) return 1;
-              if (a.name.toLowerCase() > b.name.toLowerCase()) return -1;
-              return 0;
-            });
+    case CLEAN_RECIPES:
       return {
         ...state,
-        recipes: sorted,
+        recipes: [],
+      };
+
+    case SORT_BYNAME:
+      const sorted = [...state.recipes];
+
+      if (payload === "A to Z")
+        sorted.sort((a, b) => {
+          if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
+          if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
+          return 0;
+        });
+      else
+        sorted.sort((a, b) => {
+          if (a.name.toLowerCase() < b.name.toLowerCase()) return 1;
+          if (a.name.toLowerCase() > b.name.toLowerCase()) return -1;
+          return 0;
+        });
+      return {
+        ...state,
+        recipesModified: sorted,
       };
 
     case SORT_BYHEALTHSCORE:
-      const sortHealth =
-        payload === "1 to 100"
-          ? state.recipes.sort((a, b) => {
-              if (a.healthScore > b.healthScore) return 1;
-              if (a.healthScore < b.healthScore) return -1;
-              return 0;
-            })
-          : state.recipes.sort((a, b) => {
-              if (a.healthScore < b.healthScore) return 1;
-              if (a.healthScore > b.healthScore) return -1;
-              return 0;
-            });
+      const sortHealth = [...state.recipes];
+      if (payload === "1 to 100")
+        sortHealth.sort((a, b) => {
+          if (a.healthScore > b.healthScore) return 1;
+          if (a.healthScore < b.healthScore) return -1;
+          return 0;
+        });
+      else
+        sortHealth.sort((a, b) => {
+          if (a.healthScore < b.healthScore) return 1;
+          if (a.healthScore > b.healthScore) return -1;
+          return 0;
+        });
       return {
         ...state,
-        recipes: sortHealth,
+        recipesModified: sortHealth,
+      };
+
+    case FILTER_DIET:
+      const recipes = state.recipes;
+      const filteredRecipes =
+        payload === "All"
+          ? recipes
+          : recipes.filter((r) => r.Diets.includes(payload));
+
+      return {
+        ...state,
+        recipesModified: filteredRecipes,
+      };
+
+    case FILTER_CREATE:
+      const all = [...state.recipes];
+      const created =
+        payload === "created"
+          ? all.filter((r) => r.created === true)
+          : all.filter((r) => r.created === false);
+
+      return {
+        ...state,
+        recipesModied: created,
       };
 
     default:

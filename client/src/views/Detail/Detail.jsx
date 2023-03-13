@@ -15,29 +15,29 @@ const Detail = () => {
     return () => dispatch(cleanDetail());
   }, [dispatch, id]);
 
+  const mapeoDietas = () => {
+    console.log(recipesDetail);
+
+    if (recipesDetail["Diets"]) {
+      return recipesDetail.Diets.map((e) => {
+        return (
+          <p className={style.diets} key={e}>
+            {e}
+          </p>
+        );
+      });
+    }
+  };
+
   return (
     <div className={style.mainContainer}>
       <h1 className={style.name}>{recipesDetail?.name}</h1>
       <h5 className={style.id}>{recipesDetail?.id}</h5>
       <img className={style.img} src={recipesDetail?.image} alt="" />
+
       <div className={style.container}>
         <h2> Diet type: </h2>
-
-        {recipesDetail?.diets
-          ? recipesDetail?.diets.map((e) => {
-              return (
-                <p className={style.diets} hey={e}>
-                  {e}
-                </p>
-              );
-            })
-          : recipesDetail.Diets?.map((e) => {
-              return (
-                <p className={style.diets} hey={e.name}>
-                  {e.name}
-                </p>
-              );
-            })}
+        {mapeoDietas()}
       </div>
       <div className={style.container}>
         <h3>Summary: </h3>
@@ -50,8 +50,8 @@ const Detail = () => {
         <h3>Setps: </h3>
         <ol>
           {Array.isArray(recipesDetail?.steps) ? (
-            recipesDetail.steps.map((e) => {
-              return <li>{e.step}</li>;
+            recipesDetail.steps.map((e, index) => {
+              return <li key={index}>{e.step}</li>;
             })
           ) : (
             <li>{recipesDetail.steps}</li>

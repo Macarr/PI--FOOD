@@ -7,3 +7,4 @@ export const CLEAN_RECIPES = "CLEAN_RECIPES";
 export const SORT_BYNAME = "SORT_BYNAME ";
 export const SORT_BYHEALTHSCORE = "SORT_BYHEALTHSCORE";
 export const FILTER_DIET = "FILTER_DIET";
+export const FILTER_CREATE = "FILTER_CREATE";
