@@ -4,9 +4,7 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const routes = require("./routes/index.js");
 const getAllDiets = require("./controllers/dietsController");
-const { Diets } = "./db.js";
-
-require("./db.js");
+const { Diets } = require("./db.js");
 
 const server = express();
 
@@ -27,14 +25,15 @@ server.use((req, res, next) => {
   next();
 });
 
-server.use(async (req, res, next) => {
-  if (!Diets) await getAllDiets();
+// server.use(async (req, res, next) => {
+//   console.log(await Diets.findAll().length);
+//   if ((await Diets.findAll().length) < 1) await getAllDiets();
 
-  //si hay dietas no hace nada, si esta vacio lo cargo
-  // llama a get all diets
+//   //si hay dietas no hace nada, si esta vacio lo cargo
+//   // llama a get all diets
 
-  next();
-});
+//   next();
+// });
 
 server.use("/", routes);
 

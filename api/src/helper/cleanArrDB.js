@@ -1,7 +1,6 @@
 const cleanArrDataBase = (elem) => {
   if (elem.length === 0) return elem;
   else {
-    console.log(elem);
     return elem.map((r) => {
       return {
         id: r.dataValues.id,
