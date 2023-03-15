@@ -11,6 +11,9 @@ const Card = (props) => {
       </Link>
       <ul>Type of diet:</ul>
       <ul>{props.diets}</ul>
+      <div>
+        <p> HS: {props.healthScore}</p>
+      </div>
     </div>
   );
 };

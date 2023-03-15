@@ -7,8 +7,8 @@ import {
   SORT_BYNAME,
   SORT_BYHEALTHSCORE,
   FILTER_DIET,
-  CLEAN_RECIPES,
   FILTER_CREATE,
+  CLEAN_RECIPES,
 } from "./Actions/action-types";
 
 const initialState = {
@@ -57,11 +57,11 @@ const rootReducer = (state = initialState, { type, payload }) => {
     case CLEAN_RECIPES:
       return {
         ...state,
-        recipes: [],
+        recipesModified: [...state.recipes],
       };
 
     case SORT_BYNAME:
-      const sorted = [...state.recipes];
+      const sorted = [...state.recipesModified];
 
       if (payload === "A to Z")
         sorted.sort((a, b) => {
@@ -81,7 +81,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       };
 
     case SORT_BYHEALTHSCORE:
-      const sortHealth = [...state.recipes];
+      const sortHealth = [...state.recipesModified];
       if (payload === "1 to 100")
         sortHealth.sort((a, b) => {
           if (a.healthScore > b.healthScore) return 1;
@@ -100,7 +100,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       };
 
     case FILTER_DIET:
-      const recipes = state.recipes;
+      const recipes = [...state.recipes];
       const filteredRecipes =
         payload === "All"
           ? recipes
@@ -113,6 +113,8 @@ const rootReducer = (state = initialState, { type, payload }) => {
 
     case FILTER_CREATE:
       const all = [...state.recipes];
+      console.log(all);
+      console.log(all.created);
       const created =
         payload === "created"
           ? all.filter((r) => r.created === true)
@@ -120,7 +122,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
 
       return {
         ...state,
-        recipesModied: created,
+        recipesModified: created,
       };
 
     default:

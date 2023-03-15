@@ -8,8 +8,8 @@ import {
   SORT_BYHEALTHSCORE,
   SORT_BYNAME,
   FILTER_DIET,
-  CLEAN_RECIPES,
   FILTER_CREATE,
+  CLEAN_RECIPES,
 } from "../Actions/action-types";
 
 export const getRecipes = () => {
@@ -102,5 +102,19 @@ export const filterCreate = (create) => {
   return {
     type: FILTER_CREATE,
     payload: create,
+  };
+};
+
+export const createRecipe = (recipeData) => {
+  return async () => {
+    try {
+      const data = await axios.post(
+        `http://localhost:3001/pifood/recipes`,
+        recipeData
+      );
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
   };
 };

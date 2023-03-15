@@ -1,7 +1,7 @@
 import CardsContainer from "../../components/CardsContainer/CardsContainer.jsx";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getRecipes, cleanRecipes } from "../../redux/Actions/actions";
+import { cleanRecipes } from "../../redux/Actions/actions";
 import Pagination from "../../components/Pagination/pagination.jsx";
 import style from "./Home.module.css";
 import Sort from "../../components/Filters/Sort/Sort.jsx";
@@ -17,9 +17,7 @@ const Home = () => {
   const recipes = useSelector((state) => state.recipesModified);
 
   useEffect(() => {
-    dispatch(getRecipes());
-
-    return dispatch(cleanRecipes());
+    dispatch(cleanRecipes());
   }, [dispatch]);
 
   const [currentPage, setCurrentPage] = useState(1);

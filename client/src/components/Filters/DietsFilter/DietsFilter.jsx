@@ -1,14 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-import { filterByDiet, getDiets } from "../../../redux/Actions/actions";
-import { useEffect } from "react";
+import { filterByDiet } from "../../../redux/Actions/actions";
 
 const DietsFilter = () => {
   const dispatch = useDispatch();
   const diets = useSelector((state) => state.dietTypes);
-
-  useEffect(() => {
-    dispatch(getDiets());
-  }, [dispatch]);
 
   const handleFilter = (event) => {
     dispatch(filterByDiet(event.target.value));

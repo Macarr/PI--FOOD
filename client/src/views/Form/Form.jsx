@@ -1,16 +1,22 @@
 // import style from "./Form.module.css";
 import { useState } from "react";
 import validation from "./Validations";
-import axios from "axios";
+import style from "./Form.module.css";
+
+import { createRecipe } from "../../redux/Actions/actions";
+import { useDispatch, useSelector } from "react-redux";
 
 const Form = () => {
+  const dispatch = useDispatch();
+  const { dietTypes } = useSelector((state) => state);
+
   const [recipeData, setRecipeData] = useState({
     name: "",
     image: "",
     summary: "",
     healthScore: "",
-    steps: [],
-    diets: [],
+    steps: "",
+    Diets: [],
   });
 
   const [errors, setErrors] = useState({
@@ -19,7 +25,7 @@ const Form = () => {
     summary: "",
     healthScore: "",
     steps: "",
-    diets: "",
+    Diets: "",
   });
 
   const handleInputChange = (event) => {
@@ -38,118 +44,107 @@ const Form = () => {
     );
   };
 
+  const handleCheckbox = (event) => {
+    const dietsChecked = recipeData.Diets;
+    const find = dietsChecked.indexOf(event.target.name);
+
+    if (find > 0) {
+      dietsChecked.splice(find, 1);
+    } else {
+      dietsChecked.push(event.target.name);
+    }
+    setRecipeData({
+      ...recipeData,
+      Diets: dietsChecked,
+    });
+    setErrors(
+      validation({
+        ...recipeData,
+        Diets: dietsChecked,
+      })
+    );
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios
-      .post(`http://localhost:3001/pifood/recipes`, recipeData)
-      .then((res) => alert(res.data))
-      .catch((err) => alert(err));
+    dispatch(createRecipe(recipeData));
+    setRecipeData({
+      name: "",
+      image: "",
+      summary: "",
+      healthScore: "",
+      steps: "",
+      Diets: [],
+    });
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="name"> Name: </label>
-        <input
-          type="text"
-          value={recipeData.name}
-          name="name"
-          onChange={handleInputChange}
-        />
-        {errors.name && <span style={{ color: "red" }}>{errors.name}</span>}
-      </div>
-      <div>
-        <label htmlFor="image"> Image: </label>
-        <input
-          type="file"
-          name="image"
-          accept="image/*"
-          value={recipeData.image}
-          onChange={handleInputChange}
-        />
-      </div>
-      <div>
-        <label htmlFor="summary">Summary: </label>
-        <input
-          type="text"
-          value={recipeData.summary}
-          name="summary"
-          onChange={handleInputChange}
-        />
-      </div>
-      <div>
-        <label htmlFor="healthScore"> Health score: </label>
-        <input
-          type="number"
-          value={recipeData.healthScore}
-          name="healthScore"
-          onChange={handleInputChange}
-        />
-      </div>
-
-      <div>
-        <label htmlFor="steps">Steps: </label>
-        <input
-          type="text"
-          value={recipeData.steps}
-          name="steps"
-          onChange={handleInputChange}
-        />
-      </div>
-
-      <fieldset>
-        <legend>Type of Diets:</legend>
+    <div className={style.container}>
+      <form onSubmit={handleSubmit}>
         <div>
-          <input type="checkbox" name="gluten free" value={recipeData.diets} />
-          <label htmlFor="gluten free">Gluten free</label>
-        </div>
-        <div>
-          <input type="checkbox" name="dairy free" value="dairy free" />
-          <label htmlFor="dairy free">Dairy free</label>
-        </div>
-        <div>
+          <label htmlFor="name"> Name: </label>
           <input
-            type="checkbox"
-            name="lacto ovo vegetarian"
-            value="lacto ovo vegetarian"
+            type="text"
+            value={recipeData.name}
+            name="name"
+            onChange={handleInputChange}
           />
-          <label htmlFor="lacto ovo vegetarian">Lacto ovo vegetarian</label>
+          {errors.name && <span style={{ color: "red" }}>{errors.name}</span>}
         </div>
         <div>
-          <input type="checkbox" name="vegan" value="vegan" />
-          <label htmlFor="vegan">Vegan</label>
-        </div>
-        <div>
-          <input type="checkbox" name="paleolithic" value="paleolithic" />
-          <label htmlFor="paleolithic">Paleolithic</label>
-        </div>
-        <div>
-          <input type="checkbox" name="primal" value="primal" />
-          <label htmlFor="primal">Primal</label>
-        </div>
-        <div>
-          <input type="checkbox" name="whole 30" value="whole 30" />
-          <label htmlFor="whole 30">whole 30</label>
-        </div>
-        <div>
-          <input type="checkbox" name="pescatarian" value="pescatarian" />
-          <label htmlFor="pescatarian">Pescatarian</label>
-        </div>
-        <div>
-          <input type="checkbox" name="ketogenic" value="ketogenic" />
-          <label htmlFor="ketogenic">Ketogenic</label>
-        </div>
-        <div>
+          <label htmlFor="image"> Image: </label>
           <input
-            type="checkbox"
-            name="fodmap friendly"
-            value="fodmap friendly"
+            type="text"
+            name="image"
+            value={recipeData.image}
+            onChange={handleInputChange}
           />
-          <label htmlFor="fodmap friendly">Fodmap friendly</label>
         </div>
-      </fieldset>
-      <button type="submit">CREATE</button>
-    </form>
+        <div>
+          <label htmlFor="summary">Summary: </label>
+          <textarea
+            type="text"
+            value={recipeData.summary}
+            name="summary"
+            onChange={handleInputChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="healthScore"> Health score: </label>
+          <input
+            type="number"
+            placeholder="0 to 100"
+            value={recipeData.healthScore}
+            name="healthScore"
+            onChange={handleInputChange}
+          />
+        </div>
+
+        <div>
+          <label htmlFor="steps">Steps: </label>
+          <textarea
+            type="text"
+            value={recipeData.steps}
+            name="steps"
+            onChange={handleInputChange}
+          />
+        </div>
+
+        <fieldset>
+          <legend>Type of Diets:</legend>
+
+          {dietTypes.map((e) => {
+            return (
+              <label htmlFor={e} key={e}>
+                <input type="checkbox" name={e} onChange={handleCheckbox} />
+                {e}
+              </label>
+            );
+          })}
+        </fieldset>
+        <button type="submit">CREATE</button>
+      </form>
+    </div>
   );
 };
 

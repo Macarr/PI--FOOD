@@ -1,10 +1,13 @@
 html {
   font-family: sans-serif;
 }
+.conteiner {
+  margin-top: 20px;
+}
 
 form {
   width: 600px;
-  margin: 1em auto;
+  margin: 10em auto;
   background: rgba(238, 172, 131, 0.825);
 }
 

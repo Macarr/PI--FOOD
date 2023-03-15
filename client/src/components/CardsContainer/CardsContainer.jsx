@@ -13,6 +13,7 @@ const CardsContainer = ({ recipesData }) => {
             name={recipe?.name}
             image={recipe?.image}
             diets={recipe?.Diets.join(" - ")}
+            healthScore={recipe?.healthScore}
           />
         );
       })}

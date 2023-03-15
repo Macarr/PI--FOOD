@@ -16,8 +16,6 @@ const Detail = () => {
   }, [dispatch, id]);
 
   const mapeoDietas = () => {
-    console.log(recipesDetail);
-
     if (recipesDetail["Diets"]) {
       return recipesDetail.Diets.map((e) => {
         return (
