@@ -1,13 +1,13 @@
-// import style from "./Form.module.css";
 import { useState } from "react";
 import validation from "./Validations";
 import style from "./Form.module.css";
-
-import { createRecipe } from "../../redux/Actions/actions";
+import { useHistory } from "react-router-dom";
+import { createRecipe, getRecipes } from "../../redux/Actions/actions";
 import { useDispatch, useSelector } from "react-redux";
 
 const Form = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const { dietTypes } = useSelector((state) => state);
 
   const [recipeData, setRecipeData] = useState({
@@ -67,19 +67,32 @@ const Form = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(createRecipe(recipeData));
-    setRecipeData({
-      name: "",
-      image: "",
-      summary: "",
-      healthScore: "",
-      steps: "",
-      Diets: [],
-    });
+    if (
+      errors.name ||
+      errors.image ||
+      errors.summary ||
+      errors.healthScore ||
+      errors.steps ||
+      errors.Diets
+    ) {
+      alert("Please check the entered values ");
+    } else {
+      dispatch(createRecipe(recipeData));
+      dispatch(getRecipes());
+      setRecipeData({
+        name: "",
+        image: "",
+        summary: "",
+        healthScore: "",
+        steps: "",
+        Diets: [],
+      });
+      history.push("/home");
+    }
   };
 
   return (
-    <div className={style.container}>
+    <div className={style.conteiner}>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="name"> Name: </label>
@@ -89,7 +102,7 @@ const Form = () => {
             name="name"
             onChange={handleInputChange}
           />
-          {errors.name && <span style={{ color: "red" }}>{errors.name}</span>}
+          {errors.name && <span style={{ color: "red" }}> {errors.name}</span>}
         </div>
         <div>
           <label htmlFor="image"> Image: </label>
@@ -99,6 +112,9 @@ const Form = () => {
             value={recipeData.image}
             onChange={handleInputChange}
           />
+          {errors.image && (
+            <span style={{ color: "red" }}> {errors.image}</span>
+          )}
         </div>
         <div>
           <label htmlFor="summary">Summary: </label>
@@ -108,6 +124,9 @@ const Form = () => {
             name="summary"
             onChange={handleInputChange}
           />
+          {errors.summary && (
+            <span style={{ color: "red" }}> {errors.summary}</span>
+          )}
         </div>
         <div>
           <label htmlFor="healthScore"> Health score: </label>
@@ -118,6 +137,9 @@ const Form = () => {
             name="healthScore"
             onChange={handleInputChange}
           />
+          {errors.healthScore && (
+            <span style={{ color: "red" }}> {errors.healthScore}</span>
+          )}
         </div>
 
         <div>
@@ -128,6 +150,9 @@ const Form = () => {
             name="steps"
             onChange={handleInputChange}
           />
+          {errors.steps && (
+            <span style={{ color: "red" }}> {errors.steps}</span>
+          )}
         </div>
 
         <fieldset>
@@ -141,6 +166,10 @@ const Form = () => {
               </label>
             );
           })}
+
+          {errors.Diets && (
+            <span style={{ color: "red" }}> {errors.Diets}</span>
+          )}
         </fieldset>
         <button type="submit">CREATE</button>
       </form>

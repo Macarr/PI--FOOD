@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: row;
   gap: 0.25rem;
-  font-family: Verdana;
 }
 
 .input {
@@ -16,7 +15,7 @@
 
 .button {
   cursor: pointer;
-  z-index: 99;
+
   display: flex;
   justify-content: center;
   align-items: center;

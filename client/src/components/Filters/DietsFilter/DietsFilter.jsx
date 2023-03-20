@@ -1,20 +1,20 @@
 import { useDispatch, useSelector } from "react-redux";
 import { filterByDiet } from "../../../redux/Actions/actions";
-
+import style from "./DietsFilter.module.css";
 const DietsFilter = () => {
   const dispatch = useDispatch();
-  const diets = useSelector((state) => state.dietTypes);
+  const { dietTypes } = useSelector((state) => state);
 
   const handleFilter = (event) => {
     dispatch(filterByDiet(event.target.value));
   };
 
   return (
-    <div>
+    <div className={style.conteiner}>
       <label>Type of diet:</label>
-      <select onChange={handleFilter}>
+      <select className={style.select} onChange={handleFilter}>
         <option value="All">All...</option>
-        {diets.map((d, index) => (
+        {dietTypes.map((d, index) => (
           <option key={index} value={d}>
             {d}
           </option>

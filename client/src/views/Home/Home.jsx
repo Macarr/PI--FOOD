@@ -21,6 +21,7 @@ const Home = () => {
   }, [dispatch]);
 
   const [currentPage, setCurrentPage] = useState(1);
+  // eslint-disable-next-line
   const [postsPerPage, setPostsPerPage] = useState(9);
   const lastPostIndex = currentPage * postsPerPage;
   const firstPostIndex = lastPostIndex - postsPerPage;
@@ -28,10 +29,10 @@ const Home = () => {
 
   return (
     <div className={style.container}>
-      <div>
-        <Sort />
+      <div className={style.sortConteiner}>
         <DietsFilter />
         <Created />
+        <Sort />
       </div>
 
       <div>
@@ -43,6 +44,7 @@ const Home = () => {
           totalPost={recipes.length}
           postsPerPage={postsPerPage}
           setCurrentPage={setCurrentPage}
+          currentPage={currentPage}
         />
       </div>
     </div>

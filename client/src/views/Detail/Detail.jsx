@@ -30,7 +30,7 @@ const Detail = () => {
   return (
     <div className={style.mainContainer}>
       <h1 className={style.name}>{recipesDetail?.name}</h1>
-      <h5 className={style.id}>{recipesDetail?.id}</h5>
+
       <img className={style.img} src={recipesDetail?.image} alt="" />
 
       <div className={style.container}>
@@ -46,7 +46,7 @@ const Detail = () => {
       </div>
       <div className={style.container}>
         <h3>Setps: </h3>
-        <ol>
+        <ul>
           {Array.isArray(recipesDetail?.steps) ? (
             recipesDetail.steps.map((e, index) => {
               return <li key={index}>{e.step}</li>;
@@ -54,7 +54,7 @@ const Detail = () => {
           ) : (
             <li>{recipesDetail.steps}</li>
           )}
-        </ol>
+        </ul>
       </div>
     </div>
   );

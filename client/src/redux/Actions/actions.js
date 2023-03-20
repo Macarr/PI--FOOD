@@ -112,9 +112,11 @@ export const createRecipe = (recipeData) => {
         `http://localhost:3001/pifood/recipes`,
         recipeData
       );
+      alert("Recipe created successfully ");
       return data;
     } catch (error) {
       console.log(error);
+      alert(error.response.data.error);
     }
   };
 };

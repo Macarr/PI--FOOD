@@ -2,7 +2,7 @@
   background-color: rgba(240, 190, 149, 0.381);
   opacity: 1;
   width: 22em;
-  height: 25em;
+  height: auto;
   margin: 1em;
   border-radius: 1em;
   transition: 0.4s;
@@ -17,7 +17,7 @@
 }
 
 .name {
-  font-family: verdana;
+  /* font-family: verdana; */
   font-size: large;
   color: #6d0000d6;
   transition: 0.4s;
@@ -28,4 +28,14 @@
 
 .Link {
   text-decoration: none;
+}
+.img {
+  width: 90%;
+  height: 60%;
+}
+.hs {
+  background-color: #d9b696;
+  border-radius: 100%;
+  display: inline-table;
+  font-weight: 600;
 }

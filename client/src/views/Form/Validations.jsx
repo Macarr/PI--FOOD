@@ -1,19 +1,28 @@
 const validation = (recipesData) => {
   let errors = {};
-  if (!recipesData.name) {
-    errors.name = "Este campo no puede estar vacio";
+
+  if (!/^[a-zA-Z-\s]+$/.test(recipesData.name)) {
+    errors.name = "Invalid characters";
   }
-  if (!/^[A-Z]+$/i.test(recipesData.name)) {
-    errors.name = "El nombre de la receta no debe contener numeros ";
+  if (!recipesData.image) {
+    errors.image = "It cant be empty";
   }
+
   if (!recipesData.summary) {
-    errors.summary = "Este campo no puede estar vacio";
+    errors.summary = "It cant be empty";
   }
   if (recipesData.healthScore > 100 || recipesData.healthScore < 1) {
-    errors.healthScore = "El valor del healthScore debe ser entre 1 y 100";
+    errors.healthScore =
+      "The value of the healthScore must be between 1 and 100";
   }
-  if (!recipesData.diets) {
-    errors.diets = "Debe seleccionar al menos un tipo de dieta";
+  if (!recipesData.healthScore) {
+    errors.healthScore = "It cant be empty";
+  }
+  if (recipesData.Diets.length < 1) {
+    errors.Diets = "You must select at least one type of diet";
+  }
+  if (!recipesData.steps) {
+    errors.steps = "It cant be empty";
   }
 
   return errors;

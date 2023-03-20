@@ -113,8 +113,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
 
     case FILTER_CREATE:
       const all = [...state.recipes];
-      console.log(all);
-      console.log(all.created);
+
       const created =
         payload === "created"
           ? all.filter((r) => r.created === true)
@@ -122,7 +121,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
 
       return {
         ...state,
-        recipesModified: created,
+        recipesModified: payload === "all" ? all : created,
       };
 
     default:

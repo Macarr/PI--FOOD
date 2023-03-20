@@ -11,12 +11,17 @@
   gap: 0.25rem;
   position: fixed;
   top: 0;
-  width: 100%;
+  width: 95vw;
+  transition: 0.2s;
+}
+
+.mainContainer:hover {
+  background-color: rgba(187, 119, 109, 0.904);
 }
 
 .navLink {
   cursor: pointer;
-  z-index: 99;
+
   /* position: absolute; */
   display: flex;
   justify-content: center;
@@ -36,3 +41,9 @@
   background-color: #926d69ef;
   color: rgb(231, 218, 218);
 }
+
+/* @media screen and( max-width: 650px) {
+  .mainContainer {
+    flex-direction: column;
+  }
+} */

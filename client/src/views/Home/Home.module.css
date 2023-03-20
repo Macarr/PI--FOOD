@@ -1,6 +1,18 @@
 .container {
-  margin-top: 10em;
+  padding-top: 10em;
   display: flex;
   flex-direction: column;
   align-content: center;
+  background-image: url("../../Images/image-from-rawpixel-id-5926619-jpeg.jpg");
+
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+}
+
+.sortConteiner {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
